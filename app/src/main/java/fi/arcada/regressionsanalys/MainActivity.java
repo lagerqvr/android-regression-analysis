@@ -40,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
       }
     }
 
+    public void clickClear (View view) {
+        try {
+            editNumber.setText("");
+            statementText.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Gör så att den här metoden anropas vid ett knapptryck
     public void getEstimate(View view) {
         try {
