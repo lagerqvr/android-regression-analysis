@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     double yValue;
 
     // Deklarera övriga variabler och objekt du behöver, t.ex. TextViews osv.
+    TextView statementText;
+    EditText editNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -24,26 +28,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Här kommer som vanligt alla findViewById som behövs
+        statementText = findViewById(R.id.statementText);
+        editNumber = findViewById(R.id.editNumber);
+    }
+
+    public void onClick (View view) {
+      try {
+          // getEstimate();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
     }
 
     // Gör så att den här metoden anropas vid ett knapptryck
     public void getEstimate(View view) {
+        try {
 
-        // RegressionLine beräknar regressionslinjen på basen av våra datamängder
-        // RegressionLine är alltså en klass som vi själva definierat (och som bör vidareutvecklas!)
-        // Instansiera regressionLine t.ex. så här:
-        //RegressionLine regLine = new RegressionLine(xData, yData);
+            // RegressionLine beräknar regressionslinjen på basen av våra datamängder
+            // RegressionLine är alltså en klass som vi själva definierat (och som bör vidareutvecklas!)
+            // Instansiera regressionLine t.ex. så här:
+            //RegressionLine regLine = new RegressionLine(xData, yData);
 
-        // Ta emot användarens input (längd) och spara i yValue
-        // Använd ett try/catch-block för NumberFormatException så att appen inte crashar
-        // om man skriver någonting annat än siffror
+            // Ta emot användarens input (längd) och spara i yValue
+            // Använd ett try/catch-block för NumberFormatException så att appen inte crashar
+            // om man skriver någonting annat än siffror
 
-        // Anropa regLine.getX()-metoden via objektet regLine, och använd yValue som parameter
-        // Skicka svaret till en TextView i layouten!
+            // Anropa regLine.getX()-metoden via objektet regLine, och använd yValue som parameter
+            // Skicka svaret till en TextView i layouten!
 
-        // DEL 3: Anropa regLine.get()-metoden via objektet regLine, och använd yValue som parameter
-        // Skicka svaret till en TextView i layouten!
+            // DEL 3: Anropa regLine.get()-metoden via objektet regLine, och använd yValue som parameter
+            // Skicka svaret till en TextView i layouten!
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
