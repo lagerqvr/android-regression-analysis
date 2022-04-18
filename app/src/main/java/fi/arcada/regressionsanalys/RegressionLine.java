@@ -4,6 +4,17 @@ public class RegressionLine {
 
     // deklarera k, m, x  och correlationCoefficient som double
 
+    double x, y, k, m, correlationCoefficient;
+    double[] xVals, yVals;
+
+    public RegressionLine(double[] xVals, double[] yVals) {
+
+    }
+
+    public double getX(double yValue) {
+        return x;
+    }
+
     // Skapa en konstruktor som tar emot data-arrays för x och y
     // Uträkningen för k och m kan ske i konstruktorn m.h.a.
     // formeln för minsta kvadratmetoden
@@ -13,6 +24,8 @@ public class RegressionLine {
 
     // skapa en metod getX som tar emot ett y-värde, räknar ut x
     // m.h.a. räta linjens ekvation y=kx+m, och returnerar x
+
+
 
     // Del 3:
     // - skapa en getter-metod för correlationCoefficient

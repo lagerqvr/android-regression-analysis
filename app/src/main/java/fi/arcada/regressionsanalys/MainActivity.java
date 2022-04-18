@@ -33,8 +33,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick (View view) {
-      try {
-          // getEstimate();
+        try {
+          yValue = Integer.parseInt(editNumber.getText().toString());
+          double tallestPersonEverInHistory = 272.01;
+          double shortestPersonEverInHistory = 54.6;
+
+          // if (yValue is larger than tallest person in history, prompt to input real height)
+          if (yValue > tallestPersonEverInHistory || yValue < shortestPersonEverInHistory) {
+              statementText.setText("Congrats, you are either the tallest or the shortest person in history!\uD83C\uDF89 Now input your actual height please.");
+              editNumber.setText("");
+          } else {
+              getEstimate();
+          }
       } catch (Exception e) {
           e.printStackTrace();
       }
@@ -50,13 +60,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Gör så att den här metoden anropas vid ett knapptryck
-    public void getEstimate(View view) {
+    public void getEstimate() {
         try {
 
             // RegressionLine beräknar regressionslinjen på basen av våra datamängder
             // RegressionLine är alltså en klass som vi själva definierat (och som bör vidareutvecklas!)
             // Instansiera regressionLine t.ex. så här:
-            //RegressionLine regLine = new RegressionLine(xData, yData);
+
+            RegressionLine regLine = new RegressionLine(xData, yData);
+            statementText.setText("Your shoe size is probably "+ regLine.getX(yValue));
 
             // Ta emot användarens input (längd) och spara i yValue
             // Använd ett try/catch-block för NumberFormatException så att appen inte crashar
@@ -68,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             // DEL 3: Anropa regLine.get()-metoden via objektet regLine, och använd yValue som parameter
             // Skicka svaret till en TextView i layouten!
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
     }
