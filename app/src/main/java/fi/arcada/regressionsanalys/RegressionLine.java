@@ -8,9 +8,8 @@ public class RegressionLine {
     // deklarera k, m, x  och correlationCoefficient som double
 
     double k, m, x, correlationCoefficient;
-    double[] xVals, yVals;
 
-    public RegressionLine(double[] xVals, double[] yVals) {
+    public RegressionLine(double yValue, double[] xVals, double[] yVals) {
         double sumAll, sumX, sumY, sumSquared, allSquared, arrLength;
 
         // Del 2 - Estimation
@@ -44,28 +43,17 @@ public class RegressionLine {
         k = (arrLength * sumAll - sumX * sumY)/(arrLength * allSquared - sumSquared);
         m = (sumY/arrLength) - (k * sumX/arrLength);
 
-        // Del 3 - Correlation
-        double sumPairs, bothSums, xSquaredM, ySquaredM, ySquared, xSquared, sX, sY, tot;
-
-        bothSums = sumX * sumY;
-        sumPairs = (arrLength * sumAll) - bothSums;
-
-        xSquaredM = arrLength * allSquared;
+        // Del 3 - Correlation/Pearson
+        double ySquaredM, ySquared;
 
         double sum2 = 0;
-        for (double yVal : yVals) {
-            sum2 = sum2 + yVal * yVal;
+        for (int i = 0; i < xVals.length; i++) {
+            sum2 = sum2 + yVals[i] * yVals[i];
         }
         ySquaredM = sum2;
-
-        xSquared = sumSquared;
         ySquared = sumY * sumY;
 
-        sX = xSquaredM - xSquared;
-        sY = ySquared - ySquaredM;
-        tot = Math.sqrt(sX * sY);
-
-        correlationCoefficient = 0.3;
+        correlationCoefficient = ((yValue * sumAll) - (sumX * sumY)) / Math.sqrt(((yValue * allSquared) - sumSquared) * ((yValue*ySquaredM)- ySquared));
     }
 
     public double getX(double yValue) {
@@ -74,24 +62,26 @@ public class RegressionLine {
     }
 
     // Del 3 - WIP
-    public double getCorrelationCoefficient() { return correlationCoefficient; }
+    public double getCorrelationCoefficient() {
+        return correlationCoefficient;
+    }
 
     public String getCorrelationGrade() {
         String grade;
-        if (correlationCoefficient == 1) {
-            grade = ("perfect");
+        if (correlationCoefficient == 1 || correlationCoefficient > 0.8) {
+            grade = ("very strong");
             return grade;
-        } else if (correlationCoefficient <= 0.99 && correlationCoefficient > 0.75) {
-            grade = ("high");
+        } else if (correlationCoefficient <= 0.8 && correlationCoefficient > 0.6) {
+            grade = ("strong");
             return grade;
-        } else if (correlationCoefficient <= 0.74 && correlationCoefficient > 0.40) {
+        } else if (correlationCoefficient <= 0.6 && correlationCoefficient > 0.4) {
             grade = ("moderate");
             return grade;
-        } else if (correlationCoefficient <= 0.39 && correlationCoefficient > 0.2) {
-            grade = ("low");
+        } else if (correlationCoefficient <= 0.4 && correlationCoefficient > 0.2) {
+            grade = ("weak");
             return grade;
         } else {
-            grade = ("little to none");
+            grade = ("very weak");
             return grade;
         }
     }

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     double[] yData = {194, 188, 181, 177, 182, 197, 179, 176, 177, 188, 164, 171, 170, 180, 171, 185, 179, 182, 180, 178, 178, 148, 197, 183, 179, 198};
 
     // Deklarera yValue för längd, Denna variabel ska sedan få ett värde som hämtas från en EditText-box i appens GUI
-    double yValue, testX;
+    double yValue;
 
     // Deklarera övriga variabler och objekt du behöver, t.ex. TextViews osv.
     TextView statementText;
@@ -72,10 +72,9 @@ public class MainActivity extends AppCompatActivity {
             // RegressionLine är alltså en klass som vi själva definierat (och som bör vidareutvecklas!)
             // Instansiera regressionLine t.ex. så här:
 
-            RegressionLine regLine = new RegressionLine(xData, yData);
+            RegressionLine regLine = new RegressionLine(yValue, xData, yData);
             statementText.setText(String.format("Height: %.0fcm\n\nYour shoe size is probably %.2f!\n\nCorrelation coefficient: %.2f (%s)", yValue, regLine.getX(yValue), regLine.getCorrelationCoefficient(), regLine.getCorrelationGrade()));
             editNumber.setText("");
-            // statementText.setText(String.valueOf(Arrays.stream(xData).sum()));
 
             // Ta emot användarens input (längd) och spara i yValue
             // Använd ett try/catch-block för NumberFormatException så att appen inte crashar
@@ -91,27 +90,4 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    public double calcSum() {
-        try {
-            double sum = 0;
-            for (int i = 0; i < xData.length; i++) {
-                sum = sum + xData[i] * yData[i];
-            }
-            testX = sum;
-
-
-            // sumAll Calc
-            /* double sum = 0;
-            for (int i = 0; i < xData.length; i++) {
-                sum = sum + (xData[i] * yData[i]);
-            }
-            testX = sum; */
-
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return testX;
-    }
-
 }
