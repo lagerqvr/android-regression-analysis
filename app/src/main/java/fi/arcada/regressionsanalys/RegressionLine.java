@@ -13,15 +13,16 @@ public class RegressionLine {
     public RegressionLine(double[] xVals, double[] yVals) {
         double sumAll, sumX, sumY, sumSquared, allSquared, arrLength;
 
+        // Del 2 - Estimation
         // Amount of pairs
         arrLength = xVals.length;
 
         // Sum of all values x*y
-        double sum1 = 0;
+        double sum = 0;
         for (int i = 0; i < xVals.length; i++) {
-            sum1 = sum1 + xVals[i] * yVals[i];
+            sum = sum + xVals[i] * yVals[i];
         }
-        sumAll = sum1;
+        sumAll = sum;
 
         // Sum of all x values
         sumX = Arrays.stream(xVals).sum();
@@ -30,17 +31,41 @@ public class RegressionLine {
         sumY = Arrays.stream(yVals).sum();
 
         // Sum of all x squared
-        double sum = 0;
+        double sum1 = 0;
         for (double xVal : xVals) {
-            sum = sum + xVal * xVal;
+            sum1 = sum1 + xVal * xVal;
         }
-        allSquared = sum;
+        allSquared = sum1;
 
         // Sum of x squared
         sumSquared = sumX * sumX;
 
+        // Calculate k & m
         k = (arrLength * sumAll - sumX * sumY)/(arrLength * allSquared - sumSquared);
         m = (sumY/arrLength) - (k * sumX/arrLength);
+
+        // Del 3 - Correlation
+        double sumPairs, bothSums, xSquaredM, ySquaredM, ySquared, xSquared, sX, sY, tot;
+
+        bothSums = sumX * sumY;
+        sumPairs = (arrLength * sumAll) - bothSums;
+
+        xSquaredM = arrLength * allSquared;
+
+        double sum2 = 0;
+        for (double yVal : yVals) {
+            sum2 = sum2 + yVal * yVal;
+        }
+        ySquaredM = sum2;
+
+        xSquared = sumSquared;
+        ySquared = sumY * sumY;
+
+        sX = xSquaredM - xSquared;
+        sY = ySquared - ySquaredM;
+        tot = Math.sqrt(sX * sY);
+
+        correlationCoefficient = sumPairs/tot;
     }
 
     public double getX(double yValue) {
@@ -49,8 +74,9 @@ public class RegressionLine {
     }
 
     // Del 3 - WIP
-    public double getCorrelationCoefficient(double yValue) {
-        return 0.0;
+    public double getCorrelationCoefficient() {
+        double r = correlationCoefficient;
+        return r;
     }
 
 

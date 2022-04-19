@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
             // Instansiera regressionLine t.ex. så här:
 
             RegressionLine regLine = new RegressionLine(xData, yData);
-            statementText.setText("Your shoe size is probably "+ String.format("%.2f", regLine.getX(yValue))+ "!");
+            statementText.setText(String.format("Height: %.0fcm\n\nYour shoe size is probably %.2f!\n\nCorrelation coefficient: %.2f", yValue, regLine.getX(yValue), regLine.getCorrelationCoefficient()));
+            editNumber.setText("");
             // statementText.setText(String.valueOf(Arrays.stream(xData).sum()));
 
             // Ta emot användarens input (längd) och spara i yValue

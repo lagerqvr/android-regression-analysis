@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Estimate your shoe size based on your height!"
+        android:text="Estimate your shoe size based on your height! (cm)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -45,11 +45,12 @@
 
     <TextView
         android:id="@+id/statementText"
-        android:layout_width="276dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="275dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calcBtn" />
 
