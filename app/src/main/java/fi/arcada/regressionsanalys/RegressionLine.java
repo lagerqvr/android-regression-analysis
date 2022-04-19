@@ -65,7 +65,7 @@ public class RegressionLine {
         sY = ySquared - ySquaredM;
         tot = Math.sqrt(sX * sY);
 
-        correlationCoefficient = sumPairs/tot;
+        correlationCoefficient = 0.3;
     }
 
     public double getX(double yValue) {
@@ -74,9 +74,26 @@ public class RegressionLine {
     }
 
     // Del 3 - WIP
-    public double getCorrelationCoefficient() {
-        double r = correlationCoefficient;
-        return r;
+    public double getCorrelationCoefficient() { return correlationCoefficient; }
+
+    public String getCorrelationGrade() {
+        String grade;
+        if (correlationCoefficient == 1) {
+            grade = ("perfect");
+            return grade;
+        } else if (correlationCoefficient <= 0.99 && correlationCoefficient > 0.75) {
+            grade = ("high");
+            return grade;
+        } else if (correlationCoefficient <= 0.74 && correlationCoefficient > 0.40) {
+            grade = ("moderate");
+            return grade;
+        } else if (correlationCoefficient <= 0.39 && correlationCoefficient > 0.2) {
+            grade = ("low");
+            return grade;
+        } else {
+            grade = ("little to none");
+            return grade;
+        }
     }
 
 

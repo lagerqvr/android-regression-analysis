@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             // Instansiera regressionLine t.ex. så här:
 
             RegressionLine regLine = new RegressionLine(xData, yData);
-            statementText.setText(String.format("Height: %.0fcm\n\nYour shoe size is probably %.2f!\n\nCorrelation coefficient: %.2f", yValue, regLine.getX(yValue), regLine.getCorrelationCoefficient()));
+            statementText.setText(String.format("Height: %.0fcm\n\nYour shoe size is probably %.2f!\n\nCorrelation coefficient: %.2f (%s)", yValue, regLine.getX(yValue), regLine.getCorrelationCoefficient(), regLine.getCorrelationGrade()));
             editNumber.setText("");
             // statementText.setText(String.valueOf(Arrays.stream(xData).sum()));
 
